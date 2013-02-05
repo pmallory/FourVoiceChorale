@@ -32,10 +32,31 @@ pitch_bass = 52 #start in middle
 
 # Generate the soprano's part, keep the common tone or move by one
 for note_number in xrange(64):
-    pitch_soprano += random.choice([-1, 0, 1])
-    pitch_alto += random.choice([-1, 0, 1]) #TODO this is dumb
-    pitch_tenor += random.choice([-1, 0, 1]) #TODO this is dumb
+
+    #keep the common voice, or move up to one tone. Stay in range.
+    if 60 <= pitch_soprano <= 81:
+        pitch_soprano += random.choice(xrange(-2, 3))
+    elif pitch_soprano < 60:
+        pitch_soprano += random.choice(xrange(0, 3))
+    else:
+        pitch_soprano += random.choice(xrange(-2, 1))
+
+    if 55 <= pitch_alto<= 76:
+        pitch_alto += random.choice(xrange(-2, 3))
+    elif pitch_alto < 55:
+        pitch_alto += random.choice(xrange(0, 3))
+    else:
+        pitch_alto += random.choice(xrange(-2,1))
+
+    if 48 <= pitch_tenor <= 69:
+        pitch_tenor += random.choice(xrange(-2, 3))
+    elif pitch_tenor < 48:
+        pitch_tenor += random.choice(xrange(0, 3))
+    else:
+        pitch_tenor += random.choice(xrange(-2,1))
+
     pitch_bass += random.choice(range(-2,3))
+
 
 
     MyMIDI.addNote(soprano_track, 0, pitch_soprano, note_number, 1, 100)
