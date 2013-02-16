@@ -34,8 +34,9 @@ def fuzzy_steps():
         melody.append(random.choice(s))
 
     for i in range(len(melody)-8):
-        if (sum(melody[i:i+8])==8) and (max(melody[i:i+8])==melody[i:i+8][-1]) and melody[i:i+8][0]<melody[i:i+8][-1]:
-            return melody[i:i+8]
+        candidate = melody[i:i+8]
+        if sum(candidate)==8 and max(candidate)==candidate[-1] and candidate[0]<candidate[-1]:
+            return candidate
     else:
         # this algo's worst case is not so good
         return fuzzy_steps()
